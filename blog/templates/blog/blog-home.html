@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+{% block title %}
+    All Blogs
+{% endblock %}
+
+{% block content %}
+
+
+<!-- The form -->
+    <form class="search-form" action="{% url 'blog:search' %}" method="get">
+      <input type="text" placeholder="Search.." name="s">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    <br>
+    <p> Number of all  posts: {% all_posts %}</p>
+
+    <h1>Popular Post: </h1>
+    {% popular_posts %}
+    <hr>
+    <h1>Categories</h1>
+    {% category_statistics %}
+    <hr>
+
+    <h1>Post: </h1>
+    <hr>
+
+    {% for post in all_post %}
+
+        <h2> <a class="card-body" href="{% url 'blog:single-blog' post.id %}"> {{ post.title }} </a></h2>
+        <p>{{ post.snippets }}</p>
+        <p>{{ post.content|truncatechars:10 }}</p>
+        <h6>Counted Views: {{ post.counted_views }}</h6>
+        <hr>
+
+    {% endfor %}
+
+{% endblock %}

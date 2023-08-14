@@ -1,0 +1,5 @@
+<ul>
+    {% for name,count in statistics.items %}
+        <li><a href="{% url 'blog:category' name %}">{{ name }} = {{ count }}</a></li>
+    {% endfor %}
+</ul>

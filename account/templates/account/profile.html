@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block content %}
+    <h2>{{ user.username }} Profile </h2>
+        <div class="card">
+
+        {% for post in posts %}
+
+            <h1><a class="card-body" href="{% url 'blog:single-blog' post.id %}"> {{ post.title }} </a></h1>
+            <p>{{ post.snippets }}</p>
+            <hr>
+
+            {% if forloop.last %}<p>all posts that this user have: {% all_posts_by_user post.author.id %}</p> {% endif %}
+
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
