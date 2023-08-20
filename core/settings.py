@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,11 +36,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    'django_extensions',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'crispy_forms',
+
+
     'blog.apps.BlogConfig',
     'website.apps.WebsiteConfig',
     'account.apps.AccountConfig',
-]
+    ]
 
+SITE_ID = 2
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CSRF_COOKIE_SECURE = True
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

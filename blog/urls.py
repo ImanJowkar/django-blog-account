@@ -23,5 +23,4 @@ urlpatterns = [
     path('blog-all/', views.blog_view, name='blog-home'),
     path('blog-single/<int:blog_id>/', views.single_blog_view, name='single-blog'),
     path('category/<str:category_name>/', views.category_view, name='category'),
-    path('q/', views.search_blog_view, name='search'),
 ]

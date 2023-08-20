@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load blog_tags %}
+{% load humanize %}
 {% block title %}
     Single Blogs
 {% endblock %}
@@ -13,9 +14,9 @@
     <p> Created by:  <a href="{% url 'account:user-profile' post.author.id %}">{{ post.author.username }}</a></p>
     <img src="{{ post.image.url }}">
     <br>
-    <small>Created Date: {{ post.created_date|date:"D d M Y" }}</small>
+    <small>Created Date: {{ post.created_date|naturaltime }}</small>
     <br>
-    <small>Updated Date: {{ post.updated_date }}</small>
+    <small>Updated Date: {{ post.updated_date|naturaltime }}</small>
     <h6>Categories: </h6>
     <ul>
     {% for cat in post.category.all %}

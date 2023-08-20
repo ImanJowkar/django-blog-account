@@ -5,16 +5,14 @@
 {% endblock %}
 
 {% block content %}
-
-
-<!-- The form -->
-    <form class="search-form" action="{% url 'blog:search' %}" method="get">
-      <input type="text" placeholder="Search.." name="s">
-      <button type="submit"><i class="fa fa-search"></i></button>
+    <h2>Search-bar </h2>
+    <a type="button" class="nav-item nav-link" href="{% url 'website:home' %}" style="float: right;"> <button>Create Post</button> </a>
+    <form class="col-md-6" method="GET" action="" >
+        <input class="col-md-6" type="search" name="search">
+        <button class="col-md-6" type="submit"> Search </button>
     </form>
     <br>
     <p> Number of all  posts: {% all_posts %}</p>
-
     <h1>Popular Post: </h1>
     {% popular_posts %}
     <hr>
@@ -33,6 +31,30 @@
         <h6>Counted Views: {{ post.counted_views }}</h6>
         <hr>
 
-    {% endfor %}
+        {% endfor %}
 
+
+<div class="pagination">
+    <span class="step-links">
+        {% if all_post.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ all_post.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ all_post.number }} of {{ all_post.paginator.num_pages }}.
+        </span>
+
+        {% if all_post.has_next %}
+            <a href="?page={{ all_post.next_page_number }}">next</a>
+            <a href="?page={{ all_post.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    <hr>
+    <hr>
+
+        {% for i in all_post.paginator.page_range %}
+            <a href="?page={{i}}"> {{ i }} </a>
+        {% endfor %}
+    </span>
+</div>
 {% endblock %}
